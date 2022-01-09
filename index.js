@@ -1,24 +1,20 @@
-const fs = require("fs");
-const path = require("path")
-console.log(process.argv[2]);
+const fs = require("fs")
 
-var files=[];
-fs.readdir((process.argv[2]),{withFileTypes : true},function(err,files){
-   if(err) throw err;
-   files.map((obj)=>{
-      if((obj.isDirectory()) == false){
-         console.log(obj.name + "---" + "file")
-files.push(files)
-      }
-      else {
-         console.log(obj.name + "---" + "folder");
-      }
-   })
-})
+fs.readdir(process.argv[2], { withFileTypes: true },
+    (err, files) => {
+        if (err) throw err;
+        console.log(files)
 
+        files.map((obj) => {
+            if (obj.isFile()) {
+                console.log(`${obj.name}:File`)
+            }
+            else {
+                console.log(`${obj.name}:Folder`)
+            }
+        })
 
-
-
+    })
 
 
 
